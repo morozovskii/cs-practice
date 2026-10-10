@@ -1,6 +1,9 @@
 a = float(input())
 b = float(input())
-
-print(a + b)
-print(a - b)
-print(a * b)
+op = input()
+if op == ("+"):
+	print(a + b)
+if op == ("-"):
+	print(a - b)
+if op == ("*"):
+	print(a * b)
