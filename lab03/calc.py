@@ -1,9 +1,9 @@
 a = float(input())
 b = float(input())
 op = input()
-if op == ("+"):
+if op == "+":
 	print(a + b)
-if op == ("-"):
+if op == "-":
 	print(a - b)
-if op == ("*"):
+if op == "*":
 	print(a * b)
