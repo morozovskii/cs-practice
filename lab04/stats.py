@@ -1,8 +1,6 @@
 def parse_record(line: str) -> dict:
     
     parts = line.split(";")
-
-   
     if len(parts) != 3:
         raise ValueError(f"Неверное количество полей: ожидалось 3, найдено {len(parts)} в строке '{line}'")
 
@@ -11,45 +9,47 @@ def parse_record(line: str) -> dict:
     date = date.strip()
     temp_str = temp_str.strip()
 
-    
     if not city:
         raise ValueError("Город не может быть пустым")
     if not date:
         raise ValueError("Дата не может быть пустой")
 
-   
+    # Поддержка запятой вместо точки
+    temp_str = temp_str.replace(",", ".")
+
     try:
         temp = float(temp_str)
     except ValueError:
         raise ValueError(f"Температура не является числом: '{temp_str}'")
 
-    return {"city": city, "temp": temp, "date": date}
+    return {"city": city, "temperature": temp, "date": date}
 
 
 def read_valid(lines: list[str]) -> list[dict]:
-   
-    valid_records = []
+    
+    result = []
     for line in lines:
-        if not line.strip():
-            continue
+        line = line.strip()
+        if not line:
+            continue  # пустые строки не считаются ошибками
         try:
             record = parse_record(line)
-            valid_records.append(record)
+            result.append(record)
         except ValueError:
-            # Плохую строку просто пропускаем
+            # Пропускаем строки, которые не удалось распарсить
             continue
-    return valid_records
+    return result
 
 
 def average_by_city(records: list[dict]) -> dict:
- 
     
     totals = {}
     counts = {}
 
     for r in records:
         c = r["city"]
-        t = r["temp"]
+        t = r["temperature"]  # используем правильный ключ
+
         totals[c] = totals.get(c, 0.0) + t
         counts[c] = counts.get(c, 0) + 1
 
@@ -78,4 +78,4 @@ def warmest_city(records: list[dict]) -> str:
             if best_city is None or city < best_city:
                 best_city = city
 
-    return best_city
+    return best_city if best_city is not None else ""
