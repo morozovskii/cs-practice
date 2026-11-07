@@ -26,8 +26,20 @@ def deepest_path(paths):
 print(deepest_path(paths))
 
 
-# deepest_path(paths)         # "docs/img/logo.png"
+def human_size(n_bytes):
+    if n_bytes < 1024:
+        return str(n_bytes) + "Б"
+    elif n_bytes < 1024 * 1024:
+        return str(round(n_bytes / 1024, 1)) + "КБ"
+    elif n_bytes < 1024 * 1024 * 1024:
+        return str(round(n_bytes / 1024 / 1024, 1)) + "МБ"
+    elif n_bytes < 1024 * 1024 * 1024 * 1024:
+        return str(round(n_bytes / 1024 / 1024 / 1024, 1)) + "ГБ"
+    else:
+        return str(round(n_bytes / 1024 / 1024 / 1024 / 1024, 1)) + "ТБ"
+print(human_size(900))
+print(human_size(1536))
+print(human_size(5 * 1024 * 1024))
 
-# human_size(900)             # "900 Б"
-# human_size(1536)            # "1.5 КБ"
-# human_size(5 * 1024 * 1024) # "5.0 МБ"
+
+
