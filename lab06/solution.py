@@ -12,7 +12,20 @@ def count_by_extension(paths):
     return extensions
 print(count_by_extension(paths))
 
-# count_by_extension(paths)   # {"pdf": 1, "txt": 1, "png": 1, "": 1}
+def deepest_path(paths):
+    if len(paths) == 0:
+        return ""
+    deepest = paths[0]
+    for path in paths:
+        if len(path.split("/")) > len(deepest.split("/")):
+            deepest = path
+        elif len(path.split("/")) == len(deepest.split("/")):
+            if path < deepest:
+                deepest = path
+    return deepest
+print(deepest_path(paths))
+
+
 # deepest_path(paths)         # "docs/img/logo.png"
 
 # human_size(900)             # "900 Б"
