@@ -3,7 +3,7 @@ paths = ["docs/report.PDF", "notes.txt", "docs/img/logo.png", "Makefile"]
 def count_by_extension(paths):
     extensions = {}
     for path in paths:
-        if "." in path:
+        if "." in path and not path.startswith("."):
             extension = path.split(".")[-1].lower()
         else:
             extension = ""
