@@ -28,15 +28,15 @@ print(deepest_path(paths))
 
 def human_size(n_bytes):
     if n_bytes < 1024:
-        return str(n_bytes) + "Б"
+        return str(n_bytes) + " Б"
     elif n_bytes < 1024 * 1024:
-        return str(round(n_bytes / 1024, 1)) + "КБ"
+        return str(round(n_bytes / 1024, 1)) + " КБ"
     elif n_bytes < 1024 * 1024 * 1024:
-        return str(round(n_bytes / 1024 / 1024, 1)) + "МБ"
+        return str(round(n_bytes / 1024 / 1024, 1)) + " МБ"
     elif n_bytes < 1024 * 1024 * 1024 * 1024:
-        return str(round(n_bytes / 1024 / 1024 / 1024, 1)) + "ГБ"
+        return str(round(n_bytes / 1024 / 1024 / 1024, 1)) + " ГБ"
     else:
-        return str(round(n_bytes / 1024 / 1024 / 1024 / 1024, 1)) + "ТБ"
+        return str(round(n_bytes / 1024 / 1024 / 1024 / 1024, 1)) + " ТБ"
 print(human_size(900))
 print(human_size(1536))
 print(human_size(5 * 1024 * 1024))
