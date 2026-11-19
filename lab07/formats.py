@@ -41,7 +41,7 @@ def parse_settings(lines):
             pass
 
         try:
-            return float(value.replace(",", "."))
+            return float(value)
         except ValueError:
             return value
 
@@ -73,15 +73,15 @@ def parse_settings(lines):
     return result
 
 
-def merge_by_key(rows):
-
+def merge_by_key(rows: list[dict], extra: dict, key: str = "id") -> list[dict]:
     result = []
 
     for row in rows:
         record = {}
 
-        if key in row and row[key] in extra:
-            record.update(extra[row[key]])
+        if key in row:
+            extra_record = extra.get(row[key], {})
+            record.update(extra_record)
 
         record.update(row)
 
