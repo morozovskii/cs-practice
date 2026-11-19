@@ -17,9 +17,14 @@ def count_levels(lines):
         try:
             event = parse_event(line)
             level = event["level"]
-            counts[level] = counts.get(level, 0) + 1
+
+            if level not in ("DEBUG", "INFO", "WARNING", "ERROR"):
+                level = "BROKEN"
+
         except ValueError:
-            continue
+            level = "BROKEN"
+
+        counts[level] = counts.get(level, 0) + 1
 
     return counts
 
