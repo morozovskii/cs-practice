@@ -12,7 +12,7 @@ def main():
         errors = top_errors(log, 3)
 
     total = sum(counts.values())
-    error_count = counts.get("ERROR", 0)
+    error_count = counts.get("ERROR", 0)    
     broken_count = counts.get("BROKEN", 0)
 
     print(total)
