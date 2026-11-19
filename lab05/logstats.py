@@ -14,18 +14,17 @@ def parse_event(line):
 
 
 def count_levels(lines):
-    result = {}
+    counts = {}
 
     for line in lines:
-        parts = line.strip().split()
-
-        if len(parts) < 2:
+        try:
+            event = parse_event(line)
+            level = event["level"]
+            counts[level] = counts.get(level, 0) + 1
+        except ValueError:
             continue
 
-        level = parts[1]
-        result[level] = result.get(level, 0) + 1
-
-    return result
+    return counts
 
 def top_errors(lines: list[str], n: int) -> list[list]:
     errors = {}
